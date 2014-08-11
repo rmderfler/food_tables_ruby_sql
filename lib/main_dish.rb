@@ -31,4 +31,9 @@ class Main_dish
     Main_dish.all.detect {|dish| dish.main_dish == main}.id
   end
 
+   def change_name(old_name, new_name)
+    DB.exec("UPDATE main_dishes SET main_dish = '#{new_name}' WHERE main_dish = '#{old_name}';")
+    self.main_dish = new_name
+  end
+
 end

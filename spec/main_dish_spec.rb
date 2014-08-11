@@ -39,5 +39,12 @@ describe "Main_dish" do
     expect(Main_dish.search_by_name("hot dog")).to eq dish2.id
   end
 
+  it "lets you change a dishes name" do
+    dish1 = Main_dish.new({:main_dish => "hamburger"})
+    dish1.save
+    dish1.change_name("hamburger", "burger")
+    expect(dish1.main_dish).to eq "burger"
+  end
+
   
 end
