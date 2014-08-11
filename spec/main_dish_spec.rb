@@ -13,4 +13,10 @@ describe "Main_dish" do
     expect(test_main.id).to eq 1
   end
 
+  it "starts with no dishes" do
+    expect(Main_dish.all).to eq []
+  end
+
+
+  
 end
