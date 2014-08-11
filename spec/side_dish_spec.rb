@@ -68,5 +68,17 @@ describe "Side_dish" do
     expect(results.first['main']).to eq main_id.to_s
   end
 
+  describe ".search_by_main_dish" do
+    it "finds all occurances of a main dish" do
+      side = Side_dish.new({:side_dish => "fries"})
+      side.save
+      main1 = Main_dish.new({:main_dish => "hot dog"})
+      main1.save
+      main2 = Main_dish.new({:main_dish => "hamburger"})
+      main2.save
+      side.add_main(main1)
+      expect(Side_dish.search_by_main_dish("hot dog")).to eq side.side_dish
+    end
+  end
   
 end
