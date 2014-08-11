@@ -46,5 +46,17 @@ describe "Main_dish" do
     expect(dish1.main_dish).to eq "burger"
   end
 
+
+  it "lets you delete a dish" do
+    dish1 = Main_dish.new({:main_dish => "hamburger"})
+    dish1.save
+    dish2 = Main_dish.new({:main_dish => "hot dog"})
+    dish2.save
+    dish3 = Main_dish.new({:main_dish => "fish"})
+    dish3.save
+    dish2.delete_dish("hot dog")
+    expect(Main_dish.all).to eq [dish1, dish3]
+  end
+
   
 end

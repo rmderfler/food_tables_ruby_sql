@@ -36,4 +36,10 @@ class Main_dish
     self.main_dish = new_name
   end
 
+  def delete_dish(name)
+    dish_to_delete = Main_dish.search_by_name(name)
+    DB.exec("DELETE FROM main_dishes WHERE main_dish = '#{name}'")
+    Main_dish.all.delete(Main_dish.all.first)
+  end
+
 end
