@@ -30,4 +30,14 @@ describe "Main_dish" do
     dish2.save
     expect(dish1).to eq dish2
   end
+
+   it "lets you search by dish and find the dish's id" do
+    dish1 = Main_dish.new({:main_dish => "hamburger"})
+    dish1.save
+    dish2 = Main_dish.new({:main_dish => "hot dog"})
+    dish2.save
+    expect(Main_dish.search_by_name("hot dog")).to eq dish2.id
+  end
+
+  
 end

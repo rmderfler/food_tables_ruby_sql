@@ -27,4 +27,8 @@ class Main_dish
     self.main_dish == another_dish.main_dish 
   end
 
+  def self.search_by_name(main)
+    Main_dish.all.detect {|dish| dish.main_dish == main}.id
+  end
+
 end
