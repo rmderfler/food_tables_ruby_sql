@@ -13,7 +13,7 @@ describe "Side_dish" do
     expect(test_side.id).to eq 1
   end
 
-  
+
   it "starts with no dishes" do
     expect(Side_dish.all).to eq []
   end
@@ -58,4 +58,15 @@ describe "Side_dish" do
     expect(Side_dish.all).to eq [dish1, dish3]
   end
 
+    it "adds a main dish to a side dish" do
+    main = Main_dish.new({:main_dish => "hamburger"})
+    main_id = main.save
+    side = Side_dish.new({:side_dish => "onion rings"})
+    side_id = side.save
+    side.add_main(main)
+    results = DB.exec("SELECT * FROM combos WHERE main = #{main.id}")
+    expect(results.first['main']).to eq main_id.to_s
+  end
+
+  
 end
