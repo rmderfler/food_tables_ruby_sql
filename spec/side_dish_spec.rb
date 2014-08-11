@@ -13,5 +13,49 @@ describe "Side_dish" do
     expect(test_side.id).to eq 1
   end
 
+  
+  it "starts with no dishes" do
+    expect(Side_dish.all).to eq []
+  end
+
+  it "lets you save dishes to the database" do
+    dish = Side_dish.new({:side_dish => "fries"})
+    dish.save
+    expect(Side_dish.all).to eq [dish]
+  end
+
+  it "is the same dish if it has the same name" do
+    dish1 = Side_dish.new({:side_dish => "fries"})
+    dish2 = Side_dish.new({:side_dish => "fries"})
+    dish1.save
+    dish2.save
+    expect(dish1).to eq dish2
+  end
+
+  it "lets you search by dish and find the dish's id" do
+    dish1 = Side_dish.new({:side_dish => "fries"})
+    dish1.save
+    dish2 = Side_dish.new({:side_dish => "onion rings"})
+    dish2.save
+    expect(Side_dish.search_by_name("onion rings")).to eq dish2.id
+  end
+
+  it "lets you change a dishes name" do
+    dish1 = Side_dish.new({:side_dish => "fries"})
+    dish1.save
+    dish1.change_name("fries", "curly-fries")
+    expect(dish1.side_dish).to eq "curly-fries"
+  end
+
+  it "lets you delete a dish" do
+    dish1 = Side_dish.new({:side_dish => "fries"})
+    dish1.save
+    dish2 = Side_dish.new({:side_dish => "onion rings"})
+    dish2.save
+    dish3 = Side_dish.new({:side_dish => "cole slaw"})
+    dish3.save
+    dish2.delete_dish("onion rings")
+    expect(Side_dish.all).to eq [dish1, dish3]
+  end
 
 end
