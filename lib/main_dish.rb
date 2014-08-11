@@ -42,4 +42,9 @@ class Main_dish
     Main_dish.all.delete(Main_dish.all.first)
   end
 
+  def add_side(side)
+    results = DB.exec("INSERT INTO combos (main, side) VALUES (#{self.id}, #{side.id}) RETURNING id;")
+    @id = results.first['id']
+  end
+
 end

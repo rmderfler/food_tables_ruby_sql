@@ -58,5 +58,16 @@ describe "Main_dish" do
     expect(Main_dish.all).to eq [dish1, dish3]
   end
 
+
+  it "adds a side dish to a main dish" do
+    main = Main_dish.new({:main_dish => "hamburger"})
+    main_id = main.save
+    side = Side_dish.new({:side_dish => "onion rings"})
+    side_id = side.save
+    main.add_side(side)
+    results = DB.exec("SELECT * FROM combos WHERE side = #{side.id}")
+    expect(results.first['side']).to eq side_id.to_s
+  end
+
   
 end
