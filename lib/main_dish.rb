@@ -47,4 +47,13 @@ class Main_dish
     @id = results.first['id']
   end
 
+  def self.search_by_side_dish(side)
+    results = DB.exec("SELECT main_dishes.* FROM
+                       side_dishes JOIN combos on (side_dishes.id = combos.side)
+                                   JOIN main_dishes on (combos.main = main_dishes.id)
+                       WHERE side_dishes.side_dish = '#{side}';")
+    results.first['main_dish']
+  end
+
+
 end
