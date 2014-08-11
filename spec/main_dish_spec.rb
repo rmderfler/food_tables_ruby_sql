@@ -17,6 +17,9 @@ describe "Main_dish" do
     expect(Main_dish.all).to eq []
   end
 
-
-  
+  it "lets you save dishes to the database" do
+    dish = Main_dish.new({:main_dish => "hamburger"})
+    dish.save
+    expect(Main_dish.all).to eq [dish]
+  end
 end

@@ -18,4 +18,9 @@ class Main_dish
     main_dishes
   end
 
+  def save
+    result = DB.exec("INSERT INTO main_dishes (main_dish) VALUES ('#{@main_dish}') RETURNING id;")
+    @id = result.first['id'].to_i
+  end
+
 end
