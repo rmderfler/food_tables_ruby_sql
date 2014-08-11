@@ -23,4 +23,8 @@ class Main_dish
     @id = result.first['id'].to_i
   end
 
+  def == (another_dish)
+    self.main_dish == another_dish.main_dish 
+  end
+
 end

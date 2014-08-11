@@ -22,4 +22,12 @@ describe "Main_dish" do
     dish.save
     expect(Main_dish.all).to eq [dish]
   end
+
+  it "is the same dish if it has the same name" do
+    dish1 = Main_dish.new({:main_dish => "hamburger"})
+    dish2 = Main_dish.new({:main_dish => "hamburger"})
+    dish1.save
+    dish2.save
+    expect(dish1).to eq dish2
+  end
 end
